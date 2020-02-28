@@ -9,7 +9,10 @@ class ContatoDao {
 
   Future<List<Contato>> buscarTodos() async {
     final Database db = await getDatabase();
-    final List<Map<String, dynamic>> resultado = await db.query(_nomeTabela);
+    final String _queryBuscar =
+        'SELECT id, nome, numero_conta FROM $_nomeTabela ORDER BY nome ';
+    //final List<Map<String, dynamic>> resultado = await db.query(_nomeTabela);
+    final List<Map<String, dynamic>> resultado = await db.rawQuery(_queryBuscar);
     List<Contato> listaContatos = _toList(resultado);
     return listaContatos;
   }
@@ -39,7 +42,7 @@ class ContatoDao {
       whereArgs: [id],
     );
   }
-  
+
   Map<String, dynamic> _toMap(Contato contato) {
     final Map<String, dynamic> contatoMap = Map();
     //contatoMap['id'] = contato.id; SQLITE gera automatico

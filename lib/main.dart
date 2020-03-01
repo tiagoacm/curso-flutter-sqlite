@@ -1,15 +1,21 @@
+import 'package:bytebank_persistencia/http/webclient.dart';
+import 'package:bytebank_persistencia/models/contato.dart';
+import 'package:bytebank_persistencia/models/transacao.dart';
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
+
 import 'screens/dashboard.dart';
 
-void main() => runApp(BytebankApp());
+//void main() => runApp(BytebankApp());
 
-/*void main(){
+void main(){
   runApp(BytebankApp());
-  salvar(Contato(0,'Tiago', 21)).then((id){
-    buscarTodos().then((listaContatos)=>debugPrint(listaContatos.toString()));
-  });
-}*/
+  //salvar(Contato(0,'Tiago', 21)).then((id){
+  //  buscarTodos().then((listaContatos)=>debugPrint(listaContatos.toString()));
+  //});
+ //findAll().then((transacao)=>print(transacao));
+  //  save(Transacao(5.99, Contato(0, 'Bruna', 212))).then((transacao)=>print(transacao));
+}
 
 class BytebankApp extends StatelessWidget {
 

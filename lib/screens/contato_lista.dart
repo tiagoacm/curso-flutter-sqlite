@@ -1,6 +1,7 @@
 import 'package:bytebank_persistencia/dao/contato_dao.dart';
 import 'package:bytebank_persistencia/models/contato.dart';
 import 'package:bytebank_persistencia/screens/contato_form.dart';
+import 'package:bytebank_persistencia/screens/transacao_form.dart';
 import 'package:flutter/material.dart';
 
 class ContatoLista extends StatefulWidget {
@@ -15,7 +16,7 @@ class _ContatoListaState extends State<ContatoLista> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Contatos'),
+        title: Text('Transferência'),
       ),
       body: FutureBuilder<List<Contato>>(
           initialData: List(),
@@ -68,7 +69,13 @@ class _ContatoListaState extends State<ContatoLista> {
                           child: Icon(Icons.delete, color: Colors.white),
                         ),
                       ),
-                      child: _ContatoItem(contato),
+                      child: _ContatoItem(contato, onClick: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => TransacaoForm(contato),
+                          ),
+                        );
+                      }),
                     );
                   },
                 );
@@ -97,8 +104,12 @@ class _ContatoListaState extends State<ContatoLista> {
 
 class _ContatoItem extends StatelessWidget {
   final Contato contato;
+  final Function onClick;
 
-  _ContatoItem(this.contato);
+  _ContatoItem(
+    this.contato, {
+    @required this.onClick,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -106,6 +117,7 @@ class _ContatoItem extends StatelessWidget {
       child: Column(
         children: <Widget>[
           ListTile(
+            onTap: () => onClick(),
             leading: CircleAvatar(
               backgroundImage: NetworkImage(
                   'https://cdn4.iconfinder.com/data/icons/avatar-circle-1-1/72/91-512.png'),

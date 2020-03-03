@@ -1,4 +1,5 @@
 import 'package:bytebank_persistencia/screens/contato_lista.dart';
+import 'package:bytebank_persistencia/screens/perfil.dart';
 import 'package:bytebank_persistencia/screens/transacao_lista.dart';
 import 'package:flutter/material.dart';
 
@@ -32,27 +33,26 @@ class Dashboard extends StatelessWidget {
                   "Histórico",
                   Icons.description,
                   onClick: () {
-                     _mostrarTransacaoLista(context);
-                                       },
-                                     ),
-                                     _ItemDashboard(
-                                       "Perfil",
-                                       Icons.person,
-                                       onClick: () {
-                                         print('tela de histórico');
-                                       },
-                                     ),
-                                   ],
-                                 ),
-                               )
-                             ],
-                           ),
-                         );
-                       }
-                     
-                       
+                    _mostrarTransacaoLista(context);
+                  },
+                ),
+                _ItemDashboard(
+                  "Perfil",
+                  Icons.person,
+                  onClick: () {
+                    _mostrarPerfil(context);
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      }
+                    
+                      
 }
-
 
 void _mostrarContatoLista(BuildContext context) {
   Navigator.of(context)
@@ -61,7 +61,12 @@ void _mostrarContatoLista(BuildContext context) {
 
 void _mostrarTransacaoLista(BuildContext context) {
   Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) => TransacaoLista()));  
+      .push(MaterialPageRoute(builder: (context) => TransacaoLista()));
+}
+
+void _mostrarPerfil(BuildContext context) {
+    Navigator.of(context)
+      .push(MaterialPageRoute(builder: (context) => Perfil()));
 }
 
 class _ItemDashboard extends StatelessWidget {
@@ -69,12 +74,9 @@ class _ItemDashboard extends StatelessWidget {
   final IconData icone;
   final Function onClick;
 
-  _ItemDashboard(
-    this.nome, 
-    this.icone, 
-    {@required this.onClick}
-  ) : assert(icone != null),
-      assert(onClick != null);
+  _ItemDashboard(this.nome, this.icone, {@required this.onClick})
+      : assert(icone != null),
+        assert(onClick != null);
 
   @override
   Widget build(BuildContext context) {
